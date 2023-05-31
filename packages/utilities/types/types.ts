@@ -1,14 +1,7 @@
 import { BatchedSQLDataSourceProps } from "@nic-jennings/sql-datasource";
+import type { Knex } from "knex";
 
-type KnexConnection = {
-  host?: string;
-  port?: number;
-  user?: string;
-  password?: string;
-  database?: string;
-};
-
-export type KnexConfig = { client: string; connection: KnexConnection };
+export type KnexConfig = Knex.Config;
 
 export type BatchedDataSourceProps = {
   knexConfig: KnexConfig;

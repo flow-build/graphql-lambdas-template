@@ -1,73 +1,67 @@
-# Apollo Server TurboRepo QuickStarter
+# GraphQL Server Boilerplate
+
+[![serverless](http://public.serverless.com/badges/v3.svg)](http://www.serverless.com)
 
 Based upon [turboless](https://github.com/antoinewg/turboless)
 
-## What's inside?
+The repositories contains 2 lambda functions:
 
-This turborepo uses [pnpm](https://pnpm.io) as a packages manager. It includes the following packages/apps:
+- Apollo: a simple hello world graphql server with no outside connection.
+- Artemis: a graphql server that connects to a postgres database.
 
-### Packages
+Both repositories shares a commom ts and eslint configuration from packages folder.
+Artemis uses a knex configuration also available on the packages folder.
 
-- `eslint-config-custom`: `eslint` configurations (includes `eslint-config-prettier`)
-- `tsconfig`: `tsconfig.json`s used throughout the monorepo
+### Quick start (not so much)
 
-Each package is 100% [TypeScript](https://www.typescriptlang.org/).
+Create and env file with the following variables:
 
-Run `pnpm dev` to run in offline mode (from the service or the root level).
+- POSTGRES_HOST
+- POSTGRES_USER
+- POSTGRES_PASSWORD
+- POSTGRES_DB
 
-### Utilities
+Check the `docker-compose.yml` file for the default values for local running.
 
-This turborepo has some additional tools already setup for you:
+Start the database with `docker-compose up -d postgres`.
+Create the tables and seeds with `npm run migrations` and `npm run seeds`.
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-- [vitest](https://vitest.dev/) for testing.
+Run `npm run dev` to run locally the lambdas.
 
-### Build
+Call
 
-To build all apps and packages, run the following command:
-
-```bash
-cd my-turborepo
-pnpm run build
+```
+curl --location 'http://localhost:3001/dev/hello' \
+--header 'x-apollo-operation-name: any' \
+--header 'Content-Type: application/json' \
+--data '{"query":"query any {\n    hello {\n        message\n    }\n}","variables":{}}'
 ```
 
-### Develop
+and
 
-To develop all apps and packages, run the following command:
-
-```bash
-cd my-turborepo
-pnpm run dev
+```
+curl --location 'http://localhost:3002/dev/hello' \
+--header 'x-apollo-operation-name: any' \
+--header 'Content-Type: application/json' \
+--data '{"query":"query any {\n    hello {\n        id\n        name\n        field\n        created_at\n        updated_at\n    }\n}","variables":{}}'
 ```
 
-## Testing
+### Scripts
 
-This template uses [vitest](https://vitest.dev/) as a testing framework.
+Each app has the basic scripts:
 
-```bash
-cd my-turborepo
-pnpm test       # to run the tests, with coverage
-pnpm test:watch # to run tests in watch mode
-```
+- build: build the js files
+- lint
+- lint:fix
+- package: build the packages for serverless deployment
+- dev: run the lambdas locally
+- deploy: deploy the lambdas to aws
 
-## Deployment
+On the root folder you can run `npm run <script>` to run the script on all apps.
+You can run a single script on a single app with `npm run <script> -w apps/<app>`.
 
-Make sure to have `AWS_PROFILE` set up to the aws profile you want to deploy with. Otherwise the command will fail.
-Run `aws configure list-profiles` to see your profiles available.
+For example, you can run `npm run lint` and see an `any` warning on Artemis.
 
-This template simulates two environments (staging and production):
+### Contributing
 
-```bash
-cd my-turborepo
-AWS_PROFILE=<aws_profile> pnpm deploy:staging
-AWS_PROFILE=<aws_profile> pnpm deploy:production
-```
-
-⚠️ Running this command will deploy to AWS. Please make sure this is what you intend and beware of unintentional usage.
-
-## Contributing
-
-Feel free to open a PR, file an issue. I'll happily look into it.
-
+Feel free to open a PR, file an issue. We'll happily look into it.

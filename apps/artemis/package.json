@@ -1,12 +1,11 @@
 {
-  "name": "apollogql1",
+  "name": "artemis",
   "version": "1.0.0",
-  "description": "",
+  "description": "second example of a serverless graphql api, connecting to a postgresql database",
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "deploy:development": "serverless deploy --aws-profile $AWS_PROFILE --stage development",
-    "deploy:production": "serverless deploy --aws-profile $AWS_PROFILE --stage production",
+    "deploy": "serverless deploy",
     "lint": "eslint '**/*.ts'",
     "lint:fix": "eslint '**/*.ts' --fix",
     "package": "serverless package",
