@@ -1,47 +1,30 @@
 {
-  "name": "2lar-lambdas",
-  "version": "1.0.1",
+  "name": "graphql-serverless-template",
+  "version": "1.0.0",
   "private": true,
   "workspaces": [
     "packages/*",
-    "services/*"
+    "apps/*"
   ],
   "scripts": {
     "build": "turbo run build",
-    "dev": "serverless offline start",
-    "deploy:development": "serverless deploy --aws-profile $AWS_PROFILE --stage development",
-    "deploy:production": "serverless deploy --aws-profile $AWS_PROFILE --stage production",
-    "format": "turbo run format",
+    "dev": "dotenv -- turbo run dev",
+    "deploy:development": "turbo run deploy:development",
+    "deploy:production": "turbo run deploy:production",
     "lint": "turbo run lint",
-    "lint:fix": "turbo run lint:fix",
-    "test": "turbo run test",
-    "test:watch": "turbo run test:watch",
-    "check:updates": "turbo run check:updates",
-    "check:updates:u": "turbo run check:updates:u",
-    "package": "turbo run package"
+    "lint:fix": "turbo run lint:fix"
   },
   "devDependencies": {
-    "@serverless/typescript": "^3.29.0",
-    "@types/aws-lambda": "^8.10.114",
-    "@types/node": "^18.15.11",
-    "@vitest/coverage-c8": "^0.29.8",
-    "esbuild": "^0.17.15",
-    "eslint-config-custom": "workspace:*",
-    "prettier": "latest",
-    "serverless": "^3.29.0",
-    "serverless-esbuild": "^1.43.0",
-    "serverless-offline": "^12.0.4",
-    "ts-node": "^10.9.1",
+    "@serverless/typescript": "3.29.0",
+    "@types/aws-lambda": "8.10.114",
+    "@types/node": "18.15.11",
+    "dotenv-cli": "7.2.1",
+    "eslint-config-custom": "*",
+    "ts-node": "10.9.1",
     "turbo": "latest",
-    "typescript": "^5.0.3",
-    "vitest": "^0.29.8"
+    "typescript": "5.0.3"
   },
-  "engines": {
-    "npm": ">=8.0.0",
-    "node": ">=16.0.0"
-  },
-  "packageManager": "pnpm@8.0.0",
   "dependencies": {
-    "aws-lambda": "^1.0.7"
+    "aws-lambda": "1.0.7"
   }
 }
