@@ -1,7 +1,7 @@
 import type { AWS } from "@serverless/typescript";
 
 const serverlessConfiguration: AWS = {
-  service: "lar-profile-lambdas",
+  service: "apollo-lambdas",
   frameworkVersion: "3.31.0",
   plugins: ["serverless-esbuild", "serverless-offline"],
   provider: {
