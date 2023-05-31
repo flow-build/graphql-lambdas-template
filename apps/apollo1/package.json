@@ -1,0 +1,42 @@
+{
+  "name": "apollogql1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "deploy:development": "serverless deploy --aws-profile $AWS_PROFILE --stage development",
+    "deploy:production": "serverless deploy --aws-profile $AWS_PROFILE --stage production",
+    "lint": "eslint '**/*.ts'",
+    "lint:fix": "eslint '**/*.ts' --fix",
+    "package": "serverless package",
+    "dev": "serverless offline"
+  },
+  "keywords": [
+    "graphql",
+    "apollo",
+    "serverless",
+    "typescript"
+  ],
+  "author": "FDTE-DSD",
+  "license": "ISC",
+  "dependencies": {
+    "@apollo/server": "4.7.1",
+    "@as-integrations/aws-lambda": "2.0.1",
+    "@nic-jennings/sql-datasource": "0.0.7",
+    "dotenv": "16.0.3",
+    "graphql": "16.6.0",
+    "pg": "8.11.0",
+    "utilities": "*"
+  },
+  "devDependencies": {
+    "@serverless/typescript": "3.29.0",
+    "@types/node": "20.2.1",
+    "eslint-config-custom": "*",
+    "prettier-config-custom": "*",
+    "serverless-offline": "12.0.4",
+    "serverless-plugin-typescript": "2.1.4",
+    "tsconfig": "*",
+    "typescript": "5.0.4"
+  }
+}

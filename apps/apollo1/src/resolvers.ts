@@ -8,7 +8,7 @@ export const resolvers = {
       _context: LooseObject
     ) => {
       return {
-        message: 'Hello from Apollo Server'
+        message: 'A word from Apollo 1: Foo Bar!'
       }
     },
   },
